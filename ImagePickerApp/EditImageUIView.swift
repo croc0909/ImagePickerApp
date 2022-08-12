@@ -146,7 +146,7 @@ class EditImageUIView: UIView {
         }
          */
         
-        // 剪裁
+        // 如果不是裁切模式 直接 return
         guard currentMode == .crop else {
             return
         }
@@ -171,6 +171,7 @@ class EditImageUIView: UIView {
     
     // 點擊後移動
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 如果不是裁切模式 直接 return
         guard currentMode == .crop else {
             return
         }
@@ -206,6 +207,7 @@ class EditImageUIView: UIView {
     
     // 點擊結束
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        // 如果不是裁切模式 直接 return
         guard currentMode == .crop else {
             return
         }

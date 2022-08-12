@@ -69,7 +69,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Qgd-fw-IFU" customClass="PhotoCell" customModule="ImagePickerApp" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="photoCell" id="Qgd-fw-IFU" customClass="PhotoCell" customModule="ImagePickerApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="KgR-s7-YJg">
@@ -83,7 +83,7 @@
                                             </subviews>
                                         </collectionViewCellContentView>
                                         <connections>
-                                            <outlet property="photoCellImageView" destination="ejQ-Ms-Dwn" id="UVW-ms-rLV"/>
+                                            <outlet property="photoCellImageView" destination="ejQ-Ms-Dwn" id="lu6-04-FpW"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -118,10 +118,10 @@
             </objects>
             <point key="canvasLocation" x="1720.0934579439252" y="-28.509719222462206"/>
         </scene>
-        <!--View Controller-->
+        <!--Retouch View Controller-->
         <scene sceneID="1BK-dy-zHx">
             <objects>
-                <viewController storyboardIdentifier="retouchViewController" id="E8o-Sf-LHj" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="retouchViewController" id="E8o-Sf-LHj" customClass="RetouchViewController" customModule="ImagePickerApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jgU-Mc-krt">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -133,7 +133,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="rotate.right.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="rotateRight:" destination="K2l-A5-jag" eventType="touchUpInside" id="cIP-RW-wBQ"/>
+                                    <action selector="rotateRight:" destination="E8o-Sf-LHj" eventType="touchUpInside" id="WHE-qi-nqe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMs-xo-BBb">
@@ -143,7 +143,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="rotate.left.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="rotateLeft:" destination="K2l-A5-jag" eventType="touchUpInside" id="5NC-uD-qCV"/>
+                                    <action selector="rotateLeft:" destination="E8o-Sf-LHj" eventType="touchUpInside" id="TkG-SG-trG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x9v-hN-6U2">
@@ -153,16 +153,64 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="flip.horizontal.fill" catalog="system"/>
                                 <connections>
-                                    <action selector="mirror:" destination="K2l-A5-jag" eventType="touchUpInside" id="zl0-na-Pag"/>
+                                    <action selector="mirror:" destination="E8o-Sf-LHj" eventType="touchUpInside" id="DAX-5K-5Ef"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ig-dc-h6J">
+                                <rect key="frame" x="284" y="91" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="clear.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="cancelAction:" destination="E8o-Sf-LHj" eventType="touchUpInside" id="etb-Q0-cwP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1q-5Q-bB1">
+                                <rect key="frame" x="342" y="91" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="checkmark.square.fill" catalog="system"/>
+                                <connections>
+                                    <action selector="saveAction:" destination="E8o-Sf-LHj" eventType="touchUpInside" id="red-6L-We3"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okB-qS-qWo">
+                                <rect key="frame" x="39" y="840" width="170" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="crop.rotate" catalog="system"/>
+                                <connections>
+                                    <action selector="setRotateMirrorMode:" destination="E8o-Sf-LHj" eventType="touchUpInside" id="3OJ-p2-sXV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rcw-qv-wdr">
+                                <rect key="frame" x="218" y="840" width="170" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="crop" catalog="system"/>
+                                <connections>
+                                    <action selector="setCropMode:" destination="E8o-Sf-LHj" eventType="touchUpInside" id="Oc6-AC-vSn"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZIk-QE-1DO"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="5Ig-dc-h6J" id="uew-gz-RUX"/>
+                        <outlet property="cropModeButton" destination="rcw-qv-wdr" id="GKI-BI-saP"/>
+                        <outlet property="leftButton" destination="KYi-CE-XBg" id="8Zd-2b-3Vc"/>
+                        <outlet property="mirrorButton" destination="x9v-hN-6U2" id="s6B-Vh-7mp"/>
+                        <outlet property="rightButton" destination="wMs-xo-BBb" id="Q39-D4-BRI"/>
+                        <outlet property="rotateModeButton" destination="okB-qS-qWo" id="7UW-cG-kbz"/>
+                        <outlet property="saveButton" destination="c1q-5Q-bB1" id="nCG-OX-jiE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HgM-8B-acd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="K2l-A5-jag" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2641.1214953271028" y="-22.030237580993521"/>
         </scene>
@@ -186,6 +234,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark.square.fill" catalog="system" width="128" height="114"/>
+        <image name="clear.fill" catalog="system" width="128" height="114"/>
+        <image name="crop" catalog="system" width="128" height="116"/>
+        <image name="crop.rotate" catalog="system" width="113" height="128"/>
         <image name="flip.horizontal.fill" catalog="system" width="128" height="106"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="rotate.left.fill" catalog="system" width="115" height="128"/>

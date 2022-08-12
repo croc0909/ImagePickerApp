@@ -10,7 +10,7 @@ import PhotosUI
 
 var imageCollection: Array<UIImage> = []
 
-class SelectPhotoViewController: UIViewController ,UICollectionViewDataSource , UICollectionViewDelegate, PHPickerViewControllerDelegate  {
+class SelectPhotoViewController: UIViewController, UINavigationControllerDelegate ,UICollectionViewDataSource , UICollectionViewDelegate, PHPickerViewControllerDelegate  {
     
     var imageViews: [UIImageView]!
     
@@ -73,6 +73,7 @@ class SelectPhotoViewController: UIViewController ,UICollectionViewDataSource , 
         plusButton.layer.cornerRadius = plusButton.frame.height/2
         plusButton.layer.shadowOpacity = 0.4
         plusButton.layer.shadowRadius = 8
+        
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -118,6 +119,11 @@ class SelectPhotoViewController: UIViewController ,UICollectionViewDataSource , 
          
     }
     
+    // CollectionView 畫面刷新
+    override func viewWillAppear(_ animated: Bool) {
+        imageCollectionView.reloadData()
+        //setIllustrationView()
+    }
     /*
     // MARK: - Navigation
 
